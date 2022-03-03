@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jboss-web version="6.0"
+           xmlns="http://www.jboss.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_6_0.xsd">
+    <replication-config>
+        <cache-name>this-name-is-irrelevant</cache-name>
+        <!-- <cache-name>http-session-cache</cache-name> -->
+        <!-- <cache-name>jboss.infinispan.web.repl</cache-name> -->
+        <!-- Clustering only: Name of the JBoss Cache or PojoCache configuration that should be used for storing distributable sessions and replicating them around the
+             cluster. Default value if not explicitly set is the overall web container default as set in the deployers/jbossweb.deployer service.
+        -->
+
+        <replication-trigger>SET_AND_GET</replication-trigger>
+        <!-- Clustering only: Determines when the container should consider that a session must be replicated across the cluster. Possible values are:
+            1 - "ACCESS"
+            2 - "SET_AND_GET"
+            3 - "SET_AND_NON_PRIMITIVE_GET" (default value)
+            4 - "SET"
+
+            The rationale for this setting is that after a mutable object stored as a session attribute is accessed from the session, in the absence of a setAttribute
+            call the container has no clear way to know if the object (and hence the session state) has been modified. In all cases, calling setAttribute marks the session
+            as needing replication. ACCESS - merely accessing the session marks the session as dirty. SET_AND_GET is conservative but not optimal (performance-wise): it
+            will always replicate the session even if its content has not been modified but simply accessed. SET_AND_NON_PRIMITIVE_GET is conservative but will only replicate
+            if a non-primitive Object has been accessed (i.e. the object is not of a well-known immutable JDK type such as Integer, Long, String, etc.) This is the default
+            value. SET assumes that the developer will explicitly call setAttribute on the session if it needs to be replicated. This setting prevents unnecessary replication,
+            but requires very good coding practices to ensure setAttribute is always called whenever an attribute value is modified.
+
+           Examples: <replication-trigger>SET_AND_GET</replication-trigger>
+                  or <replication-trigger>SET_AND_NON_PRIMITIVE_GET</replication-trigger>
+                  or <replication-trigger>SET</replication-trigger>
+        -->
+
+        <replication-granularity>SESSION</replication-granularity>
+        <!-- Clustering only: Determines the session replication mode. Possible values are: 1 - "SYNCHRONOUS" 2 - "ASYNCHRONOUS" In SYNCHRONOUS mode, session replication
+             occurs in the same thread that processes a given request. A request will not complete until the associated session is successfully replicated. In ASYNCHRONOUS
+             mode, session replication occurs in a separate thread from the one that processes a given request. The request thread only initiates replication, but does not
+             wait for it to complete. If not defined, the replication mode defined in the distributed cache configuration will be used. In the default distributed session
+             cache configuration, sessions replicate asynchronously.
+
+             Examples: <replication-mode>SYNCHRONOUS</replication-mode>
+                    or <replication-mode>ASYNCHRONOUS</replication-mode>
+        -->
+
+    </replication-config>
+
+    <passivation-config>
+        <use-session-passivation>true</use-session-passivation>
+        <!-- This must be true when using externalized sessions -->
+
+        <passivation-min-idle-time>1</passivation-min-idle-time>
+        <!-- Determines the minimum time (in seconds) that a session must have been inactive before the container will consider passivating it in order to reduce the active
+             session count below max-active-sessions. A value of -1 (the default) disables passivating sessions before passivation-max-idle-time. Neither a value of -1 nor a
+             high value are recommended if max-active-sessions is set.
+
+             Example: <passivation-min-idle-time>30</passivation-min-idle-time> (seconds)
+        -->
+
+        <passivation-max-idle-time>2</passivation-max-idle-time>
+        <!-- Determines the maximum time (in seconds) that a session can be inactive before the container should attempt to passivate it to save memory. Passivation of such
+             sessions will take place regardless of whether the active session count exceeds max-active-sessions. Should be less than the web.xml session-timeout setting. A
+             value of -1 disables passivation based on maximum inactivity.
+
+             xample: <passivation-max-idle-time>300</passivation-max-idle-time> (seconds)
+        -->
+    </passivation-config>
+
+</jboss-web>

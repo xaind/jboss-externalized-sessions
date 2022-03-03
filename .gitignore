@@ -1,0 +1,40 @@
+### Maven ###
+target/
+
+### Spring Boot ###
+static/
+.factorypath
+.springBeans
+
+### Angular ###
+dist/
+node/
+node_modules/
+package-lock.json
+coverage
+
+### Eclipse ###
+*.project
+*.classpath
+*.settings
+.metadata/
+
+### IntelliJ ###
+*.idea
+*.iws
+*.iml
+*.ipr
+
+### VSCODE ###
+.vscode/
+frontend/.vscode/
+backend/.vscode/
+
+### Other ###
+logs/
+bin/
+transaction-logs/
+.sts4-cache/
+.flattened-pom.xml
+rebel.xml
+
