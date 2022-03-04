@@ -16,7 +16,6 @@
         <version.jboss.spec.javaee.7.0>1.1.0.Final-redhat-3</version.jboss.spec.javaee.7.0>
     </properties>
 
-
     <dependencyManagement>
         <dependencies>
             <dependency>
