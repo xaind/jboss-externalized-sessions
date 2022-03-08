@@ -4,8 +4,9 @@
            xmlns="http://www.jboss.com/xml/ns/javaee"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_6_0.xsd">
-    <replication-config>
-        <cache-name>this-name-is-irrelevant</cache-name>
+
+    <!-- <replication-config> -->
+        <!-- <cache-name>this-name-is-irrelevant</cache-name> -->
         <!-- <cache-name>http-session-cache</cache-name> -->
         <!-- <cache-name>jboss.infinispan.web.repl</cache-name> -->
         <!-- Clustering only: Name of the JBoss Cache or PojoCache configuration that should be used for storing distributable sessions and replicating them around the
@@ -13,7 +14,7 @@
         -->
 
         <!-- No longer supported? -->
-        <replication-trigger>SET_AND_GET</replication-trigger>
+        <!-- <replication-trigger>SET_AND_GET</replication-trigger> -->
         <!-- Clustering only: Determines when the container should consider that a session must be replicated across the cluster. Possible values are:
             1 - "ACCESS"
             2 - "SET_AND_GET"
@@ -33,7 +34,7 @@
                   or <replication-trigger>SET</replication-trigger>
         -->
 
-        <replication-granularity>SESSION</replication-granularity>
+        <!-- <replication-granularity>SESSION</replication-granularity> -->
         <!-- Clustering only: Determines the session replication mode. Possible values are: 1 - "SYNCHRONOUS" 2 - "ASYNCHRONOUS" In SYNCHRONOUS mode, session replication
              occurs in the same thread that processes a given request. A request will not complete until the associated session is successfully replicated. In ASYNCHRONOUS
              mode, session replication occurs in a separate thread from the one that processes a given request. The request thread only initiates replication, but does not
@@ -43,15 +44,14 @@
              Examples: <replication-mode>SYNCHRONOUS</replication-mode>
                     or <replication-mode>ASYNCHRONOUS</replication-mode>
         -->
-
-    </replication-config>
+    <!-- </replication-config> -->
 
     <!-- IS no longer supported? -->
-    <passivation-config>
-        <use-session-passivation>true</use-session-passivation>
+    <!-- <passivation-config> -->
+        <!-- <use-session-passivation>true</use-session-passivation> -->
         <!-- This must be true when using externalized sessions -->
 
-        <passivation-min-idle-time>1</passivation-min-idle-time>
+        <!-- <passivation-min-idle-time>1</passivation-min-idle-time> -->
         <!-- Determines the minimum time (in seconds) that a session must have been inactive before the container will consider passivating it in order to reduce the active
              session count below max-active-sessions. A value of -1 (the default) disables passivating sessions before passivation-max-idle-time. Neither a value of -1 nor a
              high value are recommended if max-active-sessions is set.
@@ -59,13 +59,13 @@
              Example: <passivation-min-idle-time>30</passivation-min-idle-time> (seconds)
         -->
 
-        <passivation-max-idle-time>2</passivation-max-idle-time>
+        <!-- <passivation-max-idle-time>2</passivation-max-idle-time> -->
         <!-- Determines the maximum time (in seconds) that a session can be inactive before the container should attempt to passivate it to save memory. Passivation of such
              sessions will take place regardless of whether the active session count exceeds max-active-sessions. Should be less than the web.xml session-timeout setting. A
              value of -1 disables passivation based on maximum inactivity.
 
              xample: <passivation-max-idle-time>300</passivation-max-idle-time> (seconds)
         -->
-    </passivation-config>
+    <!-- </passivation-config> -->
 
 </jboss-web>
