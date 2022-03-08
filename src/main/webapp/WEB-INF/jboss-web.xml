@@ -5,13 +5,14 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_6_0.xsd">
     <replication-config>
-        <!-- <cache-name>this-name-is-irrelevant</cache-name> -->
+        <cache-name>this-name-is-irrelevant</cache-name>
         <!-- <cache-name>http-session-cache</cache-name> -->
-        <cache-name>jboss.infinispan.web.repl</cache-name>
+        <!-- <cache-name>jboss.infinispan.web.repl</cache-name> -->
         <!-- Clustering only: Name of the JBoss Cache or PojoCache configuration that should be used for storing distributable sessions and replicating them around the
              cluster. Default value if not explicitly set is the overall web container default as set in the deployers/jbossweb.deployer service.
         -->
 
+        <!-- No longer supported? -->
         <replication-trigger>SET_AND_GET</replication-trigger>
         <!-- Clustering only: Determines when the container should consider that a session must be replicated across the cluster. Possible values are:
             1 - "ACCESS"
@@ -45,6 +46,7 @@
 
     </replication-config>
 
+    <!-- IS no longer supported? -->
     <passivation-config>
         <use-session-passivation>true</use-session-passivation>
         <!-- This must be true when using externalized sessions -->
