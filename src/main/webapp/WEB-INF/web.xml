@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <display-name>JBoss Externalized Sessions</display-name>
+    <display-name>Counter</display-name>
 
     <distributable/>
     <!-- This tag marks a web application as distributable, which means it is suitable for running in a distributed environment. If marked as distributable,
          all new sessions, and changes to existing sessions will be replicated to other members of the cluster by the session-replicator, according to the
-         replication rules in the server configuration.
-    -->
+         replication rules in the server configuration. -->
 
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+
 </web-app>
